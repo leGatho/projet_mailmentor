@@ -8,7 +8,6 @@ MailMentor est une application web qui utilise l'intelligence artificielle pour 
 - Interface simple et intuitive
 - Analyse de mails par intelligence artificielle
 - Génération de réponses pertinentes et professionnelles
-- Mode démo sans connexion
 - Intégration avec l'agent de La Plateforme
 
 ## Technologies utilisées
@@ -50,8 +49,6 @@ L'application nécessite les variables d'environnement suivantes:
 
 ## Utilisation
 
-Deux modes d'utilisation sont disponibles :
-
 ### Avec authentification
 1. Créez un compte ou connectez-vous
 2. Accédez au dashboard 
@@ -59,10 +56,6 @@ Deux modes d'utilisation sont disponibles :
 4. Cliquez sur "Générer une réponse"
 5. L'agent IA analysera le mail et générera une réponse appropriée
 
-### Mode démo
-1. Accédez à la route `/demo`
-2. Copiez-collez le contenu d'un email reçu
-3. Générez une réponse sans avoir besoin de créer un compte
 
 ## À propos de l'agent IA
 
