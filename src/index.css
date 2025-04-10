@@ -1,0 +1,53 @@
+/* Polices personnalisées */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Variables globales */
+:root {
+  --primary-color: #3b82f6;
+  --primary-hover: #2563eb;
+  --text-color: #1f2937;
+  --background-color: #ffffff;
+  --accent-color: #e0f2fe;
+}
+
+/* Styles de base */
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+/* Styles pour les éléments de formulaire améliorés */
+.input-focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+}
+
+/* Animation de chargement */
+.loading-spinner {
+  @apply animate-spin h-5 w-5 text-white;
+}
+
+/* Styles pour les boutons principaux */
+.btn-primary {
+  @apply px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-200 ease-in-out;
+}
+
+/* Animation pour les notifications */
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.notification {
+  animation: slideIn 0.3s ease-out forwards;
+}
