@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { Link } from 'react-router-dom';
 
 export default function Auth() {
   // États pour gérer le formulaire
@@ -117,17 +116,35 @@ export default function Auth() {
             {isLogin ? "Vous n'avez pas de compte? Inscrivez-vous" : 'Déjà inscrit? Connectez-vous'}
           </button>
         </div>
-        
-        <div className="text-center mt-6 pt-6 border-t border-gray-200">
-          <p className="text-sm text-gray-600 mb-2">Vous souhaitez tester l'application sans créer de compte ?</p>
-          <Link 
-            to="/demo" 
-            className="text-sm text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded inline-block"
-          >
-            Essayer la démo
-          </Link>
-        </div>
       </div>
     </div>
   );
+  // Exemple d'une fonction asynchrone pour l'insertion d'email
+  async function addEmailToDatabase(emailInput, generatedReply) {
+    const userId = localStorage.getItem("user_id"); // Récupère le user_id
+
+    if (!userId) {
+      console.error("Utilisateur non connecté !");
+      return;
+    }
+
+    // Insertion d'un email dans Supabase
+    const { error: insertError } = await supabase.from('emails').insert([
+      {
+        input_text: emailInput,
+        generated_reply: generatedReply,
+        user_id: userId, // On associe l'email au user_id
+      },
+    ]);
+
+    if (insertError) {
+      console.error("Erreur d'insertion :", insertError.message);
+    } else {
+      console.log("Email enregistré avec succès !");
+    }
+  }
+
+  // Utilisation de la fonction asynchrone dans ton code
+  addEmailToDatabase(emailInput, data.output);
+  
 } 

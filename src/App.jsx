@@ -5,6 +5,8 @@ import { AuthProvider } from './components/AuthProvider';
 import ProtectedRoute from './components/ProtectedRoute';
 import Auth from './pages/Auth';
 import Dashboard from './pages/Dashboard';
+import Historique from './pages/Historique';
+import EmailDetail from './pages/EmailDetail';
 import './App.css';
 
 function App() {
@@ -43,6 +45,26 @@ function App() {
             element={
               <ProtectedRoute>
                 <Dashboard />
+              </ProtectedRoute>
+            } 
+          />
+          
+          {/* Route protégée pour l'historique */}
+          <Route 
+            path="/historique" 
+            element={
+              <ProtectedRoute>
+                <Historique />
+              </ProtectedRoute>
+            } 
+          />
+          
+          {/* Route protégée pour le détail d'un email */}
+          <Route 
+            path="/detail/:id" 
+            element={
+              <ProtectedRoute>
+                <EmailDetail />
               </ProtectedRoute>
             } 
           />

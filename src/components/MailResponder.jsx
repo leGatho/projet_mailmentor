@@ -1,12 +1,42 @@
 // Ce composant affiche un champ de texte pour coller un email, et génère une réponse IA via l'agent Mistral hébergé sur La Plateforme
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { supabase } from "../lib/supabase";
+import { useAuth } from "../components/AuthProvider";
 
 export default function MailResponder() {
   const [emailInput, setEmailInput] = useState("");
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [tableExists, setTableExists] = useState(false);
+  const { user } = useAuth();
+
+  // Vérifier si la table emails existe
+  useEffect(() => {
+    async function checkEmailsTable() {
+      try {
+        const { data, error } = await supabase
+          .from('emails')
+          .select('id')
+          .limit(1);
+        
+        if (error) {
+          console.warn("La table emails n'existe probablement pas:", error.message);
+          setTableExists(false);
+        } else {
+          setTableExists(true);
+        }
+      } catch (err) {
+        console.warn("Erreur lors de la vérification de la table emails:", err.message);
+        setTableExists(false);
+      }
+    }
+
+    if (user) {
+      checkEmailsTable();
+    }
+  }, [user]);
 
   const handleGenerateResponse = async () => {
     if (!emailInput.trim()) {
@@ -62,7 +92,15 @@ export default function MailResponder() {
       console.log("Réponse API:", data);
 
       if (data.choices && data.choices.length > 0 && data.choices[0].message.content) {
-        setResponse(data.choices[0].message.content);
+        const generatedResponse = data.choices[0].message.content;
+        setResponse(generatedResponse);
+        
+        // Enregistrement silencieux dans la base de données si l'utilisateur est connecté et si la table existe
+        if (user && tableExists) {
+          await saveEmailToDatabase(emailInput, generatedResponse);
+        } else if (user && !tableExists) {
+          console.log("La table emails n'existe pas, impossible de sauvegarder l'email");
+        }
       } else {
         console.error("Réponse API sans contenu:", data);
         setError("Aucune réponse générée par l'agent.");
@@ -75,9 +113,39 @@ export default function MailResponder() {
     }
   };
 
+  // Fonction pour enregistrer l'email dans la base de données
+  const saveEmailToDatabase = async (emailInput, generatedReply) => {
+    if (!tableExists) {
+      console.warn("La table emails n'existe pas, création impossible");
+      return;
+    }
+
+    try {
+      // Insertion d'un email dans Supabase
+      const { error: insertError } = await supabase.from('emails').insert([
+        {
+          input_text: emailInput,
+          generated_reply: generatedReply,
+          user_id: user.id, // On associe l'email à l'ID de l'utilisateur connecté
+        },
+      ]);
+
+      if (insertError) {
+        console.error("Erreur d'insertion :", insertError.message);
+        throw insertError;
+      } else {
+        console.log("Email enregistré avec succès !");
+      }
+    } catch (err) {
+      console.error("Erreur lors de l'enregistrement :", err?.message || "Erreur inconnue");
+      // On n'affiche pas d'erreur à l'utilisateur pour ne pas perturber l'expérience
+      // puisque la génération a fonctionné
+    }
+  };
+
   return (
     <div className="p-6 max-w-3xl mx-auto bg-white rounded-xl shadow-md">
-      <h1 className="text-3xl font-bold mb-6 text-blue-700">MailMentor</h1>
+      <h1 className="text-5xl font-bold mb-8 text-blue-700 text-center">MailMentor</h1>
       
       <div className="mb-6">
         <label htmlFor="email-input" className="block text-sm font-medium text-gray-700 mb-2">
@@ -126,15 +194,17 @@ export default function MailResponder() {
           <div className="p-4 bg-gray-50 border border-gray-200 rounded-lg">
             <p className="whitespace-pre-wrap text-gray-700 text-left">{response}</p>
           </div>
-          <button
-            className="mt-3 px-4 py-2 text-sm bg-blue-100 text-blue-700 rounded-md hover:bg-blue-200 transition-colors"
-            onClick={() => {
-              navigator.clipboard.writeText(response);
-              alert("Réponse copiée dans le presse-papier!");
-            }}
-          >
-            Copier la réponse
-          </button>
+          <div className="flex space-x-3 mt-3">
+            <button
+              className="px-4 py-2 text-sm bg-blue-100 text-blue-700 rounded-md hover:bg-blue-200 transition-colors"
+              onClick={() => {
+                navigator.clipboard.writeText(response);
+                alert("Réponse copiée dans le presse-papier!");
+              }}
+            >
+              Copier la réponse
+            </button>
+          </div>
         </div>
       )}
     </div>
