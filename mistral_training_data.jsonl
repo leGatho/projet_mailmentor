@@ -1,0 +1,122 @@
+train_data_10 = [
+    {
+        "messages": [
+            {
+                "role": "user",
+                "content": "Bonjour, avez-vous eu le temps d'étudier notre cahier des charges ?"
+            },
+            {
+                "role": "assistant",
+                "content": "Bonjour,\n\nOui, nous avons bien étudié votre document. Plusieurs points sont alignés avec notre offre, je vous propose un échange rapide pour valider ensemble les prochaines étapes.\n\nCordialement,\nLéa"
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "user",
+                "content": "Bonjour, pouvons-nous organiser une session de formation pour nos équipes ?"
+            },
+            {
+                "role": "assistant",
+                "content": "Bonjour,\n\nAbsolument. Nous proposons des sessions personnalisées. Faites-moi savoir vos disponibilités et le nombre de participants.\n\nBien à vous,\nMathieu"
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "user",
+                "content": "Bonjour, quels sont les délais moyens d’implémentation de votre solution ?"
+            },
+            {
+                "role": "assistant",
+                "content": "Bonjour,\n\nL’implémentation prend en général entre 5 et 10 jours ouvrés selon la complexité de votre environnement. Nous restons disponibles pour toute question technique.\n\nBonne journée,\nClaire"
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "user",
+                "content": "Bonjour, pouvez-vous confirmer le bon déroulement de l'import de nos données ?"
+            },
+            {
+                "role": "assistant",
+                "content": "Bonjour,\n\nL'import s’est déroulé sans incident. Toutes les données ont été vérifiées et validées par nos équipes.\n\nBien cordialement,\nJérôme"
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "user",
+                "content": "Bonjour, y a-t-il une limite au nombre de campagnes que nous pouvons lancer simultanément ?"
+            },
+            {
+                "role": "assistant",
+                "content": "Bonjour,\n\nNon, il n’y a pas de limite de campagnes actives. Notre infrastructure est conçue pour supporter un volume élevé en parallèle.\n\nBonne continuation,\nIsabelle"
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "user",
+                "content": "Bonjour, proposez-vous un SLA pour le support technique ?"
+            },
+            {
+                "role": "assistant",
+                "content": "Bonjour,\n\nOui, nous proposons un SLA selon le niveau de support choisi. Je vous joins la grille complète des engagements disponibles.\n\nBien à vous,\nMarc"
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "user",
+                "content": "Bonjour, est-ce que vous proposez une démo en conditions réelles ?"
+            },
+            {
+                "role": "assistant",
+                "content": "Bonjour,\n\nAvec plaisir. Nous pouvons organiser une démo avec vos propres cas d’usage pour que vous puissiez vous projeter plus concrètement.\n\nCordialement,\nSophie"
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "user",
+                "content": "Bonjour, pouvez-vous intégrer des sources de données externes à notre tableau de bord ?"
+            },
+            {
+                "role": "assistant",
+                "content": "Bonjour,\n\nOui, notre solution permet de connecter différentes sources via API ou fichiers. Nous pouvons vous accompagner dans cette configuration.\n\nBonne journée,\nAdrien"
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "user",
+                "content": "Bonjour, est-ce qu’un module de statistiques détaillées est prévu prochainement ?"
+            },
+            {
+                "role": "assistant",
+                "content": "Bonjour,\n\nOui, le module est actuellement en développement et sera disponible dès le mois prochain. Nous vous tiendrons informés de sa mise en ligne.\n\nBien cordialement,\nNina"
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "user",
+                "content": "Bonjour, pouvez-vous activer le mode test sur notre environnement de préproduction ?"
+            },
+            {
+                "role": "assistant",
+                "content": "Bonjour,\n\nC’est fait, le mode test est désormais actif sur votre environnement de préproduction. Vous pouvez effectuer vos essais dès maintenant.\n\nBonne utilisation,\nThomas"
+            }
+        ]
+    }
+]

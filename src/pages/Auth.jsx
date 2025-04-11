@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { supabase } from '../lib/supabase';
+import logoMailMentor from '../assets/Logo MailMentor.png';
 
 export default function Auth() {
   // États pour gérer le formulaire
@@ -54,7 +55,14 @@ export default function Auth() {
     <div className="flex items-center justify-center min-h-screen bg-white">
       <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-blue-600">MailMentor</h1>
+          <div className="flex flex-col justify-center items-center mb-4">
+            <img 
+              src={logoMailMentor} 
+              alt="Logo MailMentor" 
+              className="h-16 mb-3" 
+            />
+            <h1 className="text-3xl font-bold text-blue-600">MailMentor</h1>
+          </div>
           <p className="mt-2 text-gray-600">
             {isLogin ? 'Connectez-vous à votre compte' : 'Créez un nouveau compte'}
           </p>

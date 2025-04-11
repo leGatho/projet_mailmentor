@@ -1,6 +1,7 @@
 import { supabase } from '../lib/supabase';
 import { useNavigate } from 'react-router-dom';
 import MailResponder from '../components/MailResponder';
+import logoMailMentor from '../assets/Logo MailMentor.png';
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -26,7 +27,14 @@ export default function Dashboard() {
       {/* En-tête */}
       <header className="bg-white border-b border-gray-200">
         <div className="container flex items-center justify-between px-4 py-4 mx-auto">
-          <h1 className="text-2xl font-bold text-blue-600">MailMentor</h1>
+          <div className="flex items-center">
+            <img 
+              src={logoMailMentor} 
+              alt="Logo MailMentor" 
+              className="h-8 mr-2" 
+            />
+            <h1 className="text-2xl font-bold text-blue-600">MailMentor</h1>
+          </div>
           <div className="flex space-x-4">
             <button
               onClick={goToHistory}

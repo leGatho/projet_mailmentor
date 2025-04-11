@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../components/AuthProvider';
 import { useNavigate } from 'react-router-dom';
+import logoMailMentor from '../assets/Logo MailMentor.png';
 
 export default function Historique() {
   const [emails, setEmails] = useState([]);
@@ -69,7 +70,14 @@ export default function Historique() {
       {/* En-tête */}
       <header className="bg-white border-b border-gray-200">
         <div className="container flex items-center justify-between px-4 py-4 mx-auto">
-          <h1 className="text-2xl font-bold text-blue-600">MailMentor - Historique</h1>
+          <div className="flex items-center">
+            <img 
+              src={logoMailMentor} 
+              alt="Logo MailMentor" 
+              className="h-8 mr-2" 
+            />
+            <h1 className="text-2xl font-bold text-blue-600">MailMentor - Historique</h1>
+          </div>
           <button
             onClick={handleRetour}
             className="px-4 py-2 text-sm text-white bg-blue-600 rounded-md hover:bg-blue-700"
@@ -81,7 +89,7 @@ export default function Historique() {
 
       {/* Contenu principal */}
       <main className="container px-4 py-8 mx-auto">
-        <div className="p-6 bg-white rounded-xl shadow-md">
+        <div className="p-6 bg-white rounded-xl">
           <h2 className="text-xl font-semibold mb-6 text-left">Historique de vos emails</h2>
 
           {loading && (

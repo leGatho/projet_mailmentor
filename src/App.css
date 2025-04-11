@@ -1,5 +1,4 @@
 #root {
-
   margin: 0 auto;
   text-align: center;
 }
@@ -38,4 +37,35 @@
 
 .read-the-docs {
   color: #888;
+}
+
+/* Animation de dégradé pour le titre MailMentor */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-gradient-text {
+  background: linear-gradient(90deg, #1e40af, #3b82f6, #60a5fa, #2563eb, #1e40af);
+  background-size: 300% 100%;
+  animation: gradientFlow 8s ease infinite;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  display: inline-block;
+  text-shadow: 0px 0px 1px rgba(30, 64, 175, 0.1);
+}
+
+/* Pour assurer que le dégradé s'affiche correctement sur tous les navigateurs */
+@supports not (background-clip: text) {
+  .animated-gradient-text {
+    color: #3b82f6;
+  }
 }

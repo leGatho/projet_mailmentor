@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../components/AuthProvider';
+import logoMailMentor from '../assets/Logo MailMentor.png';
 
 export default function EmailDetail() {
   const { id } = useParams();
@@ -91,7 +92,14 @@ export default function EmailDetail() {
       {/* En-tête */}
       <header className="bg-white border-b border-gray-200">
         <div className="container flex items-center justify-between px-4 py-4 mx-auto">
-          <h1 className="text-2xl font-bold text-blue-600">MailMentor - Détail</h1>
+          <div className="flex items-center">
+            <img 
+              src={logoMailMentor} 
+              alt="Logo MailMentor" 
+              className="h-8 mr-2" 
+            />
+            <h1 className="text-2xl font-bold text-blue-600">MailMentor - Détail</h1>
+          </div>
           <div className="flex space-x-3">
             <button
               onClick={goToDashboard}
@@ -111,7 +119,7 @@ export default function EmailDetail() {
 
       {/* Contenu principal */}
       <main className="container px-4 py-8 mx-auto">
-        <div className="p-6 bg-white rounded-xl shadow-md">
+        <div className="p-6 bg-white rounded-xl">
           {loading && (
             <div className="flex justify-center py-10">
               <svg className="animate-spin h-8 w-8 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

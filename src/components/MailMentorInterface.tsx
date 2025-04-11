@@ -103,9 +103,9 @@ const MailMentorInterface: React.FC = () => {
   };
 
   return (
-    <div className="p-6 max-w-3xl mx-auto bg-white rounded-xl shadow-md">
-      <h1 className="text-3xl font-bold text-blue-700 mb-6">
-        MailMentor
+    <div className="p-6 max-w-3xl mx-auto bg-white rounded-xl">
+      <h1 className="text-5xl font-bold mb-8 text-center">
+        <span className="animated-gradient-text">MailMentor</span>
       </h1>
       
       {/* Zone de saisie de l'email */}
@@ -115,7 +115,7 @@ const MailMentorInterface: React.FC = () => {
         </label>
         <textarea
           id="email-input"
-          className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+          className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition-colors"
           rows={8}
           placeholder="Collez ici le contenu de l'email reçu..."
           value={emailInput}
